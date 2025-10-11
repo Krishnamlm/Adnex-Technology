@@ -69,7 +69,7 @@ const ClientReviewsSection = () => {
 
                 {/* 🎯 FULLY RESPONSIVE CONTAINER 🎯 */}
                 {/* min-h-[300px] sets a minimum size, but allows content to expand the height */}
-                <div className="relative min-h-[500px] overflow-hidden">
+                <div className="relative min-h-[340px] overflow-hidden">
                     <AnimatePresence initial={false} custom={direction} mode='popLayout'>
                         <motion.div
                             key={page} 
@@ -104,7 +104,7 @@ const ClientReviewsSection = () => {
                                 className="w-16 h-16 rounded-full mx-auto mb-2 border-4 border-primary/50"
                             />
                             <h4 className="text-lg font-bold text-gray-900 dark:text-white">{currentReview.name}</h4>
-                            <p className=" pb-20 text-sm text-gray-500 dark:text-gray-400">{currentReview.title}</p>
+                            <p className=" pb-10 text-sm text-gray-500 dark:text-gray-400">{currentReview.title}</p>
                         </motion.div>
                     </AnimatePresence>
                 </div>
