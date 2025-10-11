@@ -92,7 +92,7 @@ const ClientReviewsSection = () => {
                            <p 
     // Default size is text-lg (small screen)
     // Size increases to sm:text-2xl (medium/large screens)
-    className=" pt-0 text-lg italic sm:text-2xl font-serif text-gray-800 dark:text-gray-200 mb-6 max-w-3xl leading-relaxed px-4 sm:px-0"
+    className=" pt-10 text-lg italic sm:text-2xl font-serif text-gray-800 dark:text-gray-200 mb-6 max-w-3xl leading-relaxed px-4 sm:px-0"
 >
     "{currentReview.review}"
 </p>
