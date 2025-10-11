@@ -13,7 +13,7 @@ const wrap = (min, max, v) => {
 const TESTIMONIALS = [
     {
         id: 1,
-        review: "Agency.AI took our PPC campaign performance to the next level. We saw a 40% increase in conversion rate within three months. Their performance manager is top-notch! .",
+        review: "Adnex took our PPC campaign performance to the next level. We saw a 40% increase in conversion rate within three months. Their performance manager is top-notch! .",
         name: "Sarah Chen",
         title: "CTO, TechCorp Solutions",
         image: "https://randomuser.me/api/portraits/women/10.jpg",
