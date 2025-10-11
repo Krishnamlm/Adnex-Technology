@@ -69,7 +69,7 @@ const ClientReviewsSection = () => {
 
                 {/* 🎯 FULLY RESPONSIVE CONTAINER 🎯 */}
                 {/* min-h-[300px] sets a minimum size, but allows content to expand the height */}
-                <div className="relative min-h-[340px] overflow-hidden">
+                <div className="relative min-h-[500px] overflow-hidden">
                     <AnimatePresence initial={false} custom={direction} mode='popLayout'>
                         <motion.div
                             key={page} 
