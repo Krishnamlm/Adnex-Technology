@@ -92,7 +92,7 @@ const ClientReviewsSection = () => {
                            <p 
     // Default size is text-lg (small screen)
     // Size increases to sm:text-2xl (medium/large screens)
-    className=" pt-10 text-lg italic sm:text-2xl font-serif text-gray-800 dark:text-gray-200 mb-6 max-w-3xl leading-relaxed px-4 sm:px-0"
+    className=" pt-0 text-lg italic sm:text-2xl font-serif text-gray-800 dark:text-gray-200 mb-6 max-w-3xl leading-relaxed px-4 sm:px-0"
 >
     "{currentReview.review}"
 </p>
@@ -104,7 +104,7 @@ const ClientReviewsSection = () => {
                                 className="w-16 h-16 rounded-full mx-auto mb-2 border-4 border-primary/50"
                             />
                             <h4 className="text-lg font-bold text-gray-900 dark:text-white">{currentReview.name}</h4>
-                            <p className=" pb-10 text-sm text-gray-500 dark:text-gray-400">{currentReview.title}</p>
+                            <p className=" pb-20 text-sm text-gray-500 dark:text-gray-400">{currentReview.title}</p>
                         </motion.div>
                     </AnimatePresence>
                 </div>
