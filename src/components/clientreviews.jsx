@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import StarRating from './starrating.jsx'; // Assuming file is now named starrating.jsx
+import StarRating from './starrating.jsx'; 
 
 // Helper function for circular navigation (must be outside the component)
 const wrap = (min, max, v) => {
@@ -13,7 +13,7 @@ const wrap = (min, max, v) => {
 const TESTIMONIALS = [
     {
         id: 1,
-        review: "Agency.AI took our PPC campaign performance to the next level. We saw a 40% increase in conversion rate within three months. Their performance manager is top-notch!",
+        review: "Agency.AI took our PPC campaign performance to the next level. We saw a 40% increase in conversion rate within three months. Their performance manager is top-notch! .",
         name: "Sarah Chen",
         title: "CTO, TechCorp Solutions",
         image: "https://randomuser.me/api/portraits/women/10.jpg",
@@ -40,35 +40,21 @@ const TESTIMONIALS = [
 const ClientReviewsSection = () => {
     const [[page, direction], setPage] = useState([0, 0]); 
 
-    // Functions to navigate the carousel
     const paginate = (newDirection) => {
         setPage([page + newDirection, newDirection]);
     };
 
-    // Calculate index within bounds
     const reviewIndex = wrap(0, TESTIMONIALS.length, page);
     const currentReview = TESTIMONIALS[reviewIndex];
 
-    // Framer Motion Variants for the slide-in/slide-out effect
     const slideVariants = {
-        enter: (direction) => ({
-            x: direction > 0 ? 100 : -100,
-            opacity: 0,
-        }),
-        center: {
-            x: 0,
-            opacity: 1,
-            zIndex: 1,
-        },
-        exit: (direction) => ({
-            x: direction < 0 ? 100 : -100,
-            opacity: 0,
-            zIndex: 0,
-        }),
+        enter: (direction) => ({ x: direction > 0 ? 100 : -100, opacity: 0 }),
+        center: { x: 0, opacity: 1, zIndex: 1 },
+        exit: (direction) => ({ x: direction < 0 ? 100 : -100, opacity: 0, zIndex: 0 }),
     };
     
     return (
-        <section id="client-reviews" className="py-28 px-4 sm:px-12 lg:px-24 xl:px-40 bg-white dark:bg-black">
+        <section id="client-reviews" className="pt-20 pb-32 px-4 sm:px-12 lg:px-24 xl:px-40 bg-white dark:bg-black">
             <div className="max-w-4xl mx-auto text-center">
                 <motion.h2
                     initial={{ opacity: 0, y: 30 }}
@@ -81,8 +67,9 @@ const ClientReviewsSection = () => {
                 </motion.h2>
                 <p className="text-primary text-xl font-medium mb-12">Trusted by leaders in various industries.</p>
 
-                {/* Carousel Container (Fixed Height) */}
-                <div className="relative min-h-[300px] overflow-hidden">
+                {/* 🎯 FULLY RESPONSIVE CONTAINER 🎯 */}
+                {/* min-h-[300px] sets a minimum size, but allows content to expand the height */}
+                <div className="relative min-h-[340px] overflow-hidden">
                     <AnimatePresence initial={false} custom={direction} mode='popLayout'>
                         <motion.div
                             key={page} 
@@ -92,18 +79,23 @@ const ClientReviewsSection = () => {
                             animate="center"
                             exit="exit"
                             transition={{ x: { type: "spring", stiffness: 300, damping: 30 }, opacity: { duration: 0.2 } }}
-                            // ✅ ATTRACTIVE LAYOUT: Enhanced background, padding, and subtle shadows
+                            // The card itself is absolutely positioned to handle the sliding animation
+                            // Padding (p-8) and background colors are applied here
                             className="absolute top-0 left-0 w-full h-full p-8 bg-gray-200 dark:bg-gray-800 rounded-2xl shadow-2xl flex flex-col justify-center items-center"
                         >
-                            {/* ⭐️ STAR RATING INTEGRATION ⭐️ */}
+                            {/* ⭐️ STAR RATING ⭐️ */}
                             <div className="mb-4">
                                 <StarRating rating={currentReview.rating} size={6} /> 
                             </div>
 
-                            {/* Review Content */}
-                            <p className="text-2xl font-serif text-gray-800 dark:text-gray-200 mb-6 max-w-3xl leading-relaxed">
-                                "{currentReview.review}"
-                            </p>
+                            {/* Review Content (Responsive Font Sizing) */}
+                           <p 
+    // Default size is text-lg (small screen)
+    // Size increases to sm:text-2xl (medium/large screens)
+    className=" pt-0 text-lg italic sm:text-2xl font-serif text-gray-800 dark:text-gray-200 mb-6 max-w-3xl leading-relaxed px-4 sm:px-0"
+>
+    "{currentReview.review}"
+</p>
                             
                             {/* Client Info */}
                             <img 
@@ -112,7 +104,7 @@ const ClientReviewsSection = () => {
                                 className="w-16 h-16 rounded-full mx-auto mb-2 border-4 border-primary/50"
                             />
                             <h4 className="text-lg font-bold text-gray-900 dark:text-white">{currentReview.name}</h4>
-                            <p className="text-sm text-gray-500 dark:text-gray-400">{currentReview.title}</p>
+                            <p className=" pb-10 text-sm text-gray-500 dark:text-gray-400">{currentReview.title}</p>
                         </motion.div>
                     </AnimatePresence>
                 </div>
