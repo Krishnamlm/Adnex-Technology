@@ -82,7 +82,7 @@ const ClientReviewsSection = () => {
                 <p className="text-primary text-xl font-medium mb-12">Trusted by leaders in various industries.</p>
 
                 {/* Carousel Container (Fixed Height) */}
-                <div className="relative h-72 sm:h-64 md:h-56 overflow-hidden">
+                <div className="relative min-h-[250px] overflow-hidden">
                     <AnimatePresence initial={false} custom={direction} mode='popLayout'>
                         <motion.div
                             key={page} 
