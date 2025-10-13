@@ -47,7 +47,7 @@ const Navbar = ({ theme, setTheme }) => {
         </a>
         <a 
     onClick={() => setSidebarOpen(false)} 
-    href="/Adnex-Technology/blog" /* MUST include the repository name for correct routing */
+    href="/blog" /* MUST include the repository name for correct routing */
     className="sm:hover:border-b"
 >
     Blog

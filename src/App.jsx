@@ -136,7 +136,7 @@ const AppContent = () => {
 
 // 🎯 FINAL EXPORT: Wrap the application in Router with the basename for GitHub Pages
 const App = () => (
-    <Router basename="/Adnex-Technology"> 
+    <Router> 
         <AppContent />
     </Router>
 );
