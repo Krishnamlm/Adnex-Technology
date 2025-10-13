@@ -1,12 +1,12 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import tailwindcss from '@tailwindcss/vite'
+// vite.config.js (Fix the original path conflict)
 
-export default defineConfig({
-  plugins: [react(), tailwindcss()],
+// Find and delete the duplicated lines, keeping ONLY the correct conditional logic:
+export default defineConfig(({ command }) => {
+    // Determine the base path:
+    const basePath = command === 'build' ? '/Adnex-Technology/' : '/';
 
-  base: './', // ✅ use relative paths for custom domain hosting
-
-  base: '/Adnex-Technology/', 
-
+    return {
+        plugins: [react(), tailwindcss()],
+        base: basePath, // Keep this line ONLY
+    }
 })
