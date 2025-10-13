@@ -45,6 +45,13 @@ const Navbar = ({ theme, setTheme }) => {
         <a onClick={() => setSidebarOpen(false)} href="#contact-us" className="sm:hover:border-b">
           Contact Us
         </a>
+        <a 
+    onClick={() => setSidebarOpen(false)} 
+    href="/Adnex-Technology/blog" /* MUST include the repository name for correct routing */
+    className="sm:hover:border-b"
+>
+    Blog
+</a>
       </div>
 
       {/* Right Side Controls */}

@@ -1,4 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
+// 🎯 ADD Router Imports and BlogPage 🎯
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import BlogPage from './components/BlogPage.jsx'; 
+
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import ClientReviewsSection from "./components/clientreviews.jsx";
@@ -11,7 +15,6 @@ import ContactUs from './components/ContactUs';
 import { Toaster } from 'react-hot-toast';
 import Footer from './components/Footer';
 import ThumbnailSection from './components/ThumbnailSection'; 
-// ✅ ASSUMPTION: assets object containing whatsapp_icon is imported here
 import assets from './assets/assets'; 
 
 const getInitialTheme = () => {
@@ -23,7 +26,8 @@ const getInitialTheme = () => {
     return 'light';
 };
 
-const App = () => {
+// 🎯 NEW: Logic and persistent elements are moved to AppContent
+const AppContent = () => {
     const [theme, setTheme] = useState(getInitialTheme);
 
     useEffect(() => {
@@ -33,11 +37,9 @@ const App = () => {
 
     const dotRef = useRef(null);
     const outlineRef = useRef(null);
-
-    // Refs for custom cursor position tracking 
     const mouse = useRef({x: 0, y: 0});
     const position = useRef({x: 0, y: 0});
-
+    
     useEffect(() => {
         const handelMouseMove = (e) => {
             mouse.current.x = e.clientX;
@@ -47,7 +49,6 @@ const App = () => {
         document.addEventListener('mousemove', handelMouseMove);
 
         const animate = () => {
-            // Cursor follow animation logic
             position.current.x += (mouse.current.x - position.current.x) * 0.1;
             position.current.y += (mouse.current.y - position.current.y) * 0.1;
 
@@ -64,89 +65,80 @@ const App = () => {
         };
     },[]);
 
-    // Define the URL-encoded message for the WhatsApp link
     const whatsappMessage = "Hello%20Adnex!%20I%20saw%20your%20website%20and%20would%20like%20to%20talk%20about%20a%20project.";
-    const phoneNumber = "916265279245"; // Define the phone number for clarity
+    const phoneNumber = "916265279245"; 
 
     return (
         <div className="relative bg-white dark:bg-black transition-colors">
             <Toaster />
             
-            {/* Main Content Structure */}
+            {/* Navbar is OUTSIDE <Routes> (PERSISTENT) */}
             <Navbar theme={theme} setTheme={setTheme} />
-            <Hero />
-            <TrustedBy />
-            <ProjectStats theme={theme} />
-            <Services />
-            <OurWork />           
-            <ThumbnailSection />
-            <Teams />
-            <ClientReviewsSection />
-            <ContactUs />
+            
+            <main>
+                {/* 🎯 ROUTES: Renders dynamic content here 🎯 */}
+                <Routes>
+                    {/* HOME PAGE ROUTE: Path '/' renders all existing sections */}
+                    <Route path="/" element={
+                        <>
+                            <Hero />
+                            <TrustedBy />
+                            <ProjectStats theme={theme} />
+                            <Services />
+                            <OurWork />           
+                            <ThumbnailSection />
+                            <Teams />
+                            <ClientReviewsSection />
+                            <ContactUs />
+                        </>
+                    } />
+                    
+                    {/* BLOG PAGE ROUTE: Path '/blog' renders only the BlogPage */}
+                    <Route path="/blog" element={<BlogPage />} />
+                </Routes>
+            </main>
+            
             <Footer theme={theme} />
 
-            {/* 📞 FIXED WHATSAPP ICON (Ripple Wrapper) 📞 */}
+            {/* WhatsApp Icon is OUTSIDE <Routes> (PERSISTENT) */}
             <div className="fixed bottom-6 right-6 z-50">
+                {/* ... (All 3 ripple divs) ... */}
+                <div 
+                    className="absolute inset-0 bg-[#25D366] rounded-full animate-wave-1 opacity-75 w-full h-full z-0"
+                ></div>
+                <div 
+                    className="absolute inset-0 bg-[#25D366] rounded-full animate-wave-2 opacity-75 w-full h-full z-0" 
+                ></div>
+                <div 
+                    className="absolute inset-0 bg-[#25D366] rounded-full animate-wave-3 opacity-75 w-full h-full z-0" 
+                ></div>
                 
-   {/* 💥 RIPPLE 1: Starts immediately 💥 */}
-        <div 
-            className="absolute inset-0 
-                       bg-[#25D366] 
-                       rounded-full 
-                       animate-wave-1 /* <-- NEW CUSTOM CLASS 1 */
-                       opacity-75 
-                       w-full h-full 
-                       z-0"
-        ></div>
-
-        {/* 💥 RIPPLE 2: Delayed by 600ms 💥 */}
-        <div 
-            className="absolute inset-0 
-                       bg-[#25D366] 
-                       rounded-full 
-                       animate-wave-2 /* <-- NEW CUSTOM CLASS 2 */
-                       opacity-75 
-                       w-full h-full 
-                       z-0" 
-        ></div>
-
-        {/* 💥 RIPPLE 3: Delayed by 1200ms 💥 */}
-        <div 
-            className="absolute inset-0 
-                       bg-[#25D366] 
-                       rounded-full 
-                       animate-wave-3 /* <-- NEW CUSTOM CLASS 3 */
-                       opacity-75 
-                       w-full h-full 
-                       z-0" 
-        ></div>
-                
-                {/* 🎯 ICON ANCHOR TAG (Relative to sit over the ripple) 🎯 */}
+                {/* 🎯 ICON ANCHOR TAG 🎯 */}
                 <a 
                     href={`https://wa.me/${phoneNumber}?text=${whatsappMessage}`} 
                     target="_blank"
                     rel="noopener noreferrer"
-                    // Correct classes: relative and z-10 for stacking
                     className="relative z-10 bg-[#25D366] p-0 rounded-full shadow-lg hover:scale-110 transition-transform flex items-center justify-center"
                 >
-                    <img 
-                        src={assets.whatsapp_icon} 
-                        alt="WhatsApp Contact" 
-                        className="w-14 h-14" 
-                    />
+                    <img src={assets.whatsapp_icon} alt="WhatsApp Contact" className="w-14 h-14" />
                 </a>
             </div>
-            {/* --------------------------- */}
 
-            {/* Custom Cursor Ring */}
+            {/* ... (Custom Cursor elements) ... */}
             <div ref={outlineRef} className="fixed top-0 left-0 h-10 w-10 rounded-full border border-primary pointer-events-none z-[9999]" 
             style={{transition: 'transform 0.1s ease-out'}}>
             </div>
-            {/* Custom Cursor Dot */}
             <div ref={dotRef} className="fixed top-0 left-0 h-3 w-3 rounded-full bg-primary pointer-events-none z-[9999]"></div>
-            
         </div>
     );
 };
+
+
+// 🎯 FINAL EXPORT: Wrap the application in Router with the basename for GitHub Pages
+const App = () => (
+    <Router basename="/Adnex-Technology"> 
+        <AppContent />
+    </Router>
+);
 
 export default App;
