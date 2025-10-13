@@ -54,11 +54,11 @@ const ClientReviewsSection = () => {
     };
     
     return (
-<<<<<<< HEAD
-        <section id="client-reviews" className="pt-20 pb-22 px-4 sm:px-12 lg:px-24 xl:px-40 bg-white dark:bg-black">
-=======
+
+       
+
         <section id="client-reviews" className="pt-20 pb-32 px-4 sm:px-12 lg:px-24 xl:px-40 bg-white dark:bg-black">
->>>>>>> 6f2d298f7f28b7f1670eb1d2ccaf9938cf040af5
+
             <div className="max-w-4xl mx-auto text-center">
                 <motion.h2
                     initial={{ opacity: 0, y: 30 }}
