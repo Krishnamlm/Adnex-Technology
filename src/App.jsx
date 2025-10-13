@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 // 🎯 ADD Router Imports and BlogPage 🎯
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import useScrollToAnchor from './components/useScrollToAnchor';
 import BlogPage from './components/BlogPage.jsx'; 
 
 import Navbar from './components/Navbar';
@@ -65,6 +66,8 @@ const AppContent = () => {
         };
     },[]);
 
+    useScrollToAnchor();
+    
     const whatsappMessage = "Hello%20Adnex!%20I%20saw%20your%20website%20and%20would%20like%20to%20talk%20about%20a%20project.";
     const phoneNumber = "916265279245"; 
 
