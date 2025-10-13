@@ -38,7 +38,11 @@ const ContactUs = () => {
       viewport={{ once: true }}
       transition={{ staggerChildren: 0.2 }}
       id="contact-us"
+<<<<<<< HEAD
       className="flex flex-col items-center gap-7 px-4 sm:px-12 lg:px-24 xl:px-40 pt-0 text-gray-700 dark:text-white"
+=======
+      className="flex flex-col items-center gap-7 px-4 sm:px-12 lg:px-24 xl:px-40 pt-30 text-gray-700 dark:text-white"
+>>>>>>> 6f2d298f7f28b7f1670eb1d2ccaf9938cf040af5
     >
       <Title
         title="Reach out to us"
