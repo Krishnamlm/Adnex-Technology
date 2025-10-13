@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'; // <-- ADD THIS IMPORT
 import React, { useState } from "react";
 // ...
-import React, { useState } from "react";
+
 import assets from "../assets/assets";
 import ThemeToggleBtn from "./ThemeToggleBtn";
 import { motion } from "framer-motion";
@@ -36,16 +36,16 @@ const Navbar = ({ theme, setTheme }) => {
           onClick={() => setSidebarOpen(false)}
         />
 
-        <a onClick={() => setSidebarOpen(false)} href="#" className="sm:hover:border-b">
+        <a onClick={() => setSidebarOpen(false)} href="/#" className="sm:hover:border-b">
           Home
         </a>
-        <a onClick={() => setSidebarOpen(false)} href="#services" className="sm:hover:border-b">
+        <a onClick={() => setSidebarOpen(false)} href="/#services" className="sm:hover:border-b">
           Services
         </a>
-        <a onClick={() => setSidebarOpen(false)} href="#our-work" className="sm:hover:border-b">
+        <a onClick={() => setSidebarOpen(false)} href="/#our-work" className="sm:hover:border-b">
           Our Work
         </a>
-        <a onClick={() => setSidebarOpen(false)} href="#contact-us" className="sm:hover:border-b">
+        <a onClick={() => setSidebarOpen(false)} href="/#contact-us" className="sm:hover:border-b">
           Contact Us
         </a>
 <Link 
