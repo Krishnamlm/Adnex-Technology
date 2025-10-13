@@ -1,3 +1,6 @@
+import { Link } from 'react-router-dom'; // <-- ADD THIS IMPORT
+import React, { useState } from "react";
+// ...
 import React, { useState } from "react";
 import assets from "../assets/assets";
 import ThemeToggleBtn from "./ThemeToggleBtn";
@@ -45,13 +48,13 @@ const Navbar = ({ theme, setTheme }) => {
         <a onClick={() => setSidebarOpen(false)} href="#contact-us" className="sm:hover:border-b">
           Contact Us
         </a>
-        <a 
+<Link 
     onClick={() => setSidebarOpen(false)} 
-    href="/blog" /* MUST include the repository name for correct routing */
+    to="/blog" // Use 'to' attribute instead of 'href'
     className="sm:hover:border-b"
 >
     Blog
-</a>
+</Link>
       </div>
 
       {/* Right Side Controls */}
