@@ -76,8 +76,8 @@ const assets = {
 export default assets
 
 export const teamData = [
-  { name: 'Krishna Prajapati', title: 'CEO & founder', image: 'https://media.licdn.com/dms/image/v2/D4D03AQFSVyiMMrrPQw/profile-displayphoto-shrink_800_800/B4DZedtDkKHAAc-/0/1750697534270?e=1762992000&v=beta&t=5YjFA5R1qS0JUcwVxjTVcK8dt-3uhUvx5LKZNNPKj6g' },
-  { name: 'Ayush Kushwah', title: 'Co-founder', image: './co-founder.png' },
-  { name: 'Megan Brooks', title: 'Ads Manager', image: 'https://randomuser.me/api/portraits/women/12.jpg' },
-  { name: 'Amber Foster', title: 'Performance Manager', image: 'https://randomuser.me/api/portraits/women/14.jpg' },
+  { name: 'Krishna Prajapati', title: 'CEO & founder', image: 'founder.png' },
+  { name: 'Nitin Baraiya', title: 'Co-founder', image: 'managing-director.png' },
+  { name: 'Ayush Kushwah', title: 'Managing Director', image: './co-founder.png' },
+   
 ]

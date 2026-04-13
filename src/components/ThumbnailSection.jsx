@@ -47,7 +47,7 @@ const ThumbnailSection = () => {
     };
 
     return (
-        <section id="thumbnails-showcase" className="py-24 px-4 sm:px-12 lg:px-24 xl:px-40 bg-white dark:bg-black">
+        <section id="thumbnails-showcase" className="py-25 px-4 sm:px-12 lg:px-24 xl:px-40 bg-white dark:bg-black">
             <div className="max-w-6xl mx-auto">
                 <motion.h2
                     initial={{ opacity: 0 }}

@@ -1,4 +1,7 @@
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
 export default defineConfig({
   plugins: [react()],
-  base: '/', // Change this from '/Adnex-Technology/' to just '/'
+  base: '/', 
 })

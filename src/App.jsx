@@ -11,7 +11,7 @@ import ProjectStats from './components/ProjectStats.jsx';
 import TrustedBy from './components/TrustedBy';
 import Services from './components/Services';
 import OurWork from './components/OurWork';
-import Teams from './components/Teams';
+
 import ContactUs from './components/ContactUs';
 import { Toaster } from 'react-hot-toast';
 import Footer from './components/Footer';
@@ -87,10 +87,8 @@ const AppContent = () => {
                             <Hero />
                             <TrustedBy />
                             <ProjectStats theme={theme} />
-                            <Services />
-                            <OurWork />           
-                            <ThumbnailSection />
-                            <Teams />
+                            <Services /> 
+                                                   
                             <ClientReviewsSection />
                             <ContactUs />
                         </>

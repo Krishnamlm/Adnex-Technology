@@ -7,27 +7,47 @@ import { motion } from "framer-motion";
 const Services = () => {
 
     const servicesData = [
-        {
-            title: 'Graphic Design',
-            description: 'Creates visual communication (logos, typography, illustrations) for all platforms. Designs high-converting ad creatives, landing pages, and infographics.',
-            icon: assets.ads_icon
-        },
-        {
-            title: 'Brand Collaborations',
-            description: 'partnership between two or more companies to co-create a campaign, product, or service that leverages the distinct audience of each brand for mutual benefit..',
-            icon: assets.marketing_icon
-        },
-        {
-            title: 'Advertisement Production',
-            description: 'entire process of creating an advertisement, from the initial concept development to the final preparation and delivery of the finished ad units',
-            icon: assets.content_icon
-        },
-        {
-            title: 'Social media',
-            description: 'Social media marketing involves strategy, content creation, page management, and paid ads to build presence online.',
-            icon: assets.social_icon
-        }
-    ]
+  {
+    title: 'Custom Software Dev',
+    description: 'Engineering scalable enterprise solutions and bespoke software architectures tailored to your unique business workflows.',
+    icon: assets.code_icon
+  },
+  {
+    title: 'Web & Mobile Apps',
+    description: 'Building high-performance, cross-platform applications using modern stacks like React, Flutter, and Node.js.',
+    icon: assets.web_icon 
+  },
+  {
+    title: 'UI/UX Strategy',
+    description: 'User-centric design focusing on intuitive navigation and aesthetic excellence to ensure maximum user retention.',
+    icon: assets.ui_ux_icon 
+  },
+  {
+    title: 'Graphic Design',
+    description: 'Visual communication including brand identity, typography, and high-converting marketing collateral for all platforms.',
+    
+  },
+  {
+    title: 'Cloud & DevOps',
+    description: 'Optimizing infrastructure for 99.9% uptime with secure cloud migration (AWS/Azure) and automated deployment.',
+    
+  },
+  {
+    title: 'Social Media Management',
+    description: 'Strategic content creation, page management, and community engagement to build a powerful online presence.',
+    
+  },
+  {
+    title: 'Ad Production',
+    description: 'End-to-end advertisement creation, from initial concept development to final preparation and high-quality delivery.',
+    
+  },
+  {
+    title: 'Brand Collaborations',
+    description: 'Strategic partnerships to co-create campaigns that leverage distinct audiences for mutual growth and visibility.',
+    
+  }
+];
 
   return (
     <motion.div 
