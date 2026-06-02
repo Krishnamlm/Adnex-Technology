@@ -42,7 +42,7 @@ const Hero = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55, delay: 0.12 }}
           viewport={{ once: true }}
-          className="text-5xl sm:text-6xl xl:text-[76px] font-medium leading-[1.1] tracking-[-2px] max-w-4xl mb-5"
+          className="text-5xl sm:text-6xl xl:text-[76px] font-medium leading-[1.1] tracking-[-2px] max-w-5xl mb-5"
         >
           Bringing Vision &amp;{' '}
           <span className="bg-gradient-to-r from-[#5044E5] to-[#4d8cea] bg-clip-text text-transparent">
@@ -82,14 +82,24 @@ const Hero = () => {
           className="flex items-center gap-3 text-xs text-gray-400 dark:text-white/35 mb-14"
         >
           <div className="flex">
-            {['#CECBF6', '#9FE1CB', '#F4C0D1', '#FAC775'].map((bg, i) => (
-              <div
-                key={i}
-                className="w-[26px] h-[26px] rounded-full border-2 border-white dark:border-gray-950 -ml-2 first:ml-0 overflow-hidden flex items-center justify-center text-[9px] font-medium"
-                style={{ background: bg }}
-              />
-            ))}
-          </div>
+  {[
+    "https://i.pravatar.cc/100?img=12",
+    "https://i.pravatar.cc/100?img=32",
+    "https://i.pravatar.cc/100?img=45",
+    "https://i.pravatar.cc/100?img=5",
+  ].map((img, i) => (
+    <div
+      key={i}
+      className="w-[28px] h-[28px] rounded-full border-2 border-white dark:border-gray-950 -ml-2 first:ml-0 overflow-hidden shadow-sm"
+    >
+      <img
+        src={img}
+        alt="user"
+        className="w-full h-full object-cover"
+      />
+    </div>
+  ))}
+</div>
           <div className="flex gap-0.5">
             {[...Array(5)].map((_, i) => (
               <svg key={i} className="w-3 h-3 fill-amber-400" viewBox="0 0 12 12">
@@ -97,7 +107,7 @@ const Hero = () => {
               </svg>
             ))}
           </div>
-          Trusted by 2,000+ creators &amp; brands
+          Trusted by 2,500+ creators &amp; brands
         </motion.div>
 
 <motion.div
@@ -117,7 +127,6 @@ const Hero = () => {
 
   {/* Dark Overlay for readability */}
   <div className="absolute inset-0 bg-black/50" />
-
   {/* Content */}
   <div className="relative z-10 flex items-center justify-center sm:justify-start h-full px-6 sm:px-12 text-center sm:text-left">
   

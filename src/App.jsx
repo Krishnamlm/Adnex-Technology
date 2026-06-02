@@ -3,6 +3,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import useScrollToAnchor from './components/useScrollToAnchor';
 import BlogPage from './components/BlogPage.jsx'; 
+import WebDesign from "./pages/WebDesign";
+import WebDevelopment from "./pages/WebDevelopment";
+import SEO from "./pages/SEO";
 
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -96,6 +99,9 @@ const AppContent = () => {
                     
                     {/* BLOG PAGE ROUTE: Path '/blog' renders only the BlogPage */}
                     <Route path="/blog" element={<BlogPage />} />
+                    <Route path="/web-design" element={<WebDesign />} />
+                    <Route path="/web-development" element={<WebDevelopment />} />
+                    
                 </Routes>
             </main>
             

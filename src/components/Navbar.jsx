@@ -1,64 +1,67 @@
-import { Link } from 'react-router-dom'; // <-- ADD THIS IMPORT
 import React, { useState } from "react";
-// ...
-
+import { Link, NavLink } from "react-router-dom";
 import assets from "../assets/assets";
 import ThemeToggleBtn from "./ThemeToggleBtn";
 import { motion } from "framer-motion";
 
 const Navbar = ({ theme, setTheme }) => {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <motion.div
       initial={{ opacity: 0, y: -50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="flex justify-between items-center px-4 sm:px-12 lg:px-24 xl:px-40 py-4 sticky top-0 z-20 backdrop-blur-xl font-medium bg-white/50 dark:bg-gray-900/70"
+      className="relative flex justify-between items-center px-4 sm:px-12 lg:px-24 xl:px-20 py-4 sticky top-0 z-50 backdrop-blur-xl bg-white/60 dark:bg-gray-900/70 border-b border-gray-100 dark:border-white/10"
     >
-      {/* Logo */}
-      <img
-        src={theme === "dark" ? assets.logo_dark : assets.logo}
-        alt="logo"
-        className="w-32 sm:w-40"
-      />
-
-      {/* Sidebar / Menu Links */}
-      <div
-        className={`text-gray-700 dark:text-white sm:text-sm fixed sm:static top-0 bottom-0 right-0 h-full sm:h-auto flex flex-col sm:flex-row sm:items-center gap-5 sm:bg-transparent transition-all duration-300
-          ${sidebarOpen ? "w-60 pl-10 bg-primary text-white pt-20" : "w-0 overflow-hidden sm:w-auto sm:pl-0 sm:pt-0"}`}
-      >
-        {/* Close Button (Mobile Only) */}
+      {/* ✅ Logo */}
+      <Link to="/">
         <img
-          src={assets.close_icon}
-          alt="close"
-          className="w-5 absolute right-4 top-4 sm:hidden cursor-pointer"
-          onClick={() => setSidebarOpen(false)}
+          src={theme === "dark" ? assets.logo_dark : assets.logo}
+          alt="Adnex Logo"
+          className="w-32 sm:w-40 cursor-pointer"
         />
+      </Link>
 
-        <a onClick={() => setSidebarOpen(false)} href="https://adnextechnologies.in/#" className="sm:hover:border-b">
+      {/* ✅ DESKTOP MENU */}
+      <div className="hidden sm:flex items-center gap-8 text-gray-700 dark:text-white text-sm">
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            `hover:text-primary transition ${
+              isActive ? "text-primary font-semibold" : ""
+            }`
+          }
+        >
           Home
-        </a>
-        <a onClick={() => setSidebarOpen(false)} href="https://adnextechnologies.in/#services" className="sm:hover:border-b">
+        </NavLink>
+
+        <a href="#services" className="hover:text-primary transition">
           Services
         </a>
-        <a onClick={() => setSidebarOpen(false)} href="https://adnextechnologies.in/#our-work" className="sm:hover:border-b">
-          Our Work
+
+        <a
+          href="/#contact-us"
+          onClick={(e) => {
+            e.preventDefault();
+            setTimeout(() => {
+              document
+                .getElementById("contact-us")
+                ?.scrollIntoView({ behavior: "smooth" });
+            }, 100);
+          }}
+          className="hover:text-primary transition"
+        >
+          Contact
         </a>
-        <a onClick={() => setSidebarOpen(false)} href="https://adnextechnologies.in/#contact-us" className="sm:hover:border-b">
-          Contact Us
-        </a>
-<Link 
-    onClick={() => setSidebarOpen(false)} 
-    to="/blog" // Use 'to' attribute instead of 'href'
-    className="sm:hover:border-b"
->
-    Blog
-</Link>
+
+        <NavLink to="/web-design">Web Design</NavLink>
+        <NavLink to="/web-development">Development</NavLink>
+        <NavLink to="/blog">Blog</NavLink>
       </div>
 
-      {/* Right Side Controls */}
-      <div className="flex items-center gap-2 sm:gap-4">
+      {/* ✅ RIGHT SIDE */}
+      <div className="flex items-center gap-3 sm:gap-4">
         {/* Theme Toggle */}
         <ThemeToggleBtn theme={theme} setTheme={setTheme} />
 
@@ -66,18 +69,113 @@ const Navbar = ({ theme, setTheme }) => {
         <img
           src={theme === "dark" ? assets.menu_icon_dark : assets.menu_icon}
           alt="menu"
-          onClick={() => setSidebarOpen(true)}
+          onClick={() => setMenuOpen(!menuOpen)}
           className="w-8 sm:hidden cursor-pointer"
         />
 
-        {/* Contact Button (hidden on small screens) */}
+        {/* Contact Button */}
         <a
-          href="#contact-us"
-          className="text-sm hidden sm:flex items-center gap-2 bg-primary text-white px-6 py-2 rounded-full cursor-pointer hover:scale-105 transition-transform"
+          href="/#contact-us"
+          className="hidden sm:flex items-center gap-2 bg-primary text-white px-6 py-2 rounded-full text-sm hover:scale-105 transition-transform"
         >
-          Contact <img src={assets.arrow_icon} width={14} alt="arrow" />
+          Contact
+          <img src={assets.arrow_icon} width={14} alt="arrow" />
         </a>
       </div>
+
+{/* ✅ MODERN MOBILE DROPDOWN */}
+<motion.div
+  initial={false}
+  animate={menuOpen ? "open" : "closed"}
+  variants={{
+    open: {
+      opacity: 1,
+      height: "auto",
+      transition: {
+        duration: 0.35,
+        ease: "easeOut",
+        when: "beforeChildren",
+        staggerChildren: 0.07,
+      },
+    },
+    closed: {
+      opacity: 0,
+      height: 0,
+      transition: {
+        duration: 0.25,
+        ease: "easeIn",
+        when: "afterChildren",
+      },
+    },
+  }}
+  className="absolute top-full left-0 w-full sm:hidden overflow-hidden"
+>
+<div className="mx-3 mt-2 rounded-2xl 
+bg-white/80 dark:bg-gray-900/80
+backdrop-blur-[4px] border border-gray-200 dark:border-white/10 shadow-2xl ">
+
+    <motion.div
+      className="flex flex-col px-5 py-4 gap-3 text-gray-700 dark:text-white text-sm"
+    >
+
+      {[
+        { label: "Home", to: "/" },
+        { label: "Services", href: "#services" },
+        { label: "Contact", href: "/#contact-us" },
+        { label: "Web Design", to: "/web-design" },
+        { label: "Development", to: "/web-development" },
+        { label: "Blog", to: "/blog" },
+      ].map((item, i) => (
+        <motion.div
+          key={i}
+          variants={{
+            open: { opacity: 1, y: 0 },
+            closed: { opacity: 0, y: -10 },
+          }}
+        >
+          {item.to ? (
+            <NavLink
+              to={item.to}
+              onClick={() => setMenuOpen(false)}
+              className="block px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-white/10 transition"
+            >
+              {item.label}
+            </NavLink>
+          ) : (
+            <a
+              href={item.href}
+              onClick={(e) => {
+                if (item.label === "Contact") {
+                  e.preventDefault();
+                  setMenuOpen(false);
+                  setTimeout(() => {
+                    document
+                      .getElementById("contact-us")
+                      ?.scrollIntoView({ behavior: "smooth" });
+                  }, 100);
+                } else {
+                  setMenuOpen(false);
+                }
+              }}
+              className="block px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-white/10 transition"
+            >
+              {item.label}
+            </a>
+          )}
+        </motion.div>
+      ))}
+
+    </motion.div>
+  </div>
+</motion.div>
+
+      {/* ✅ OPTIONAL OVERLAY */}
+      {menuOpen && (
+        <div
+          className="fixed inset-0 bg-black/30 backdrop-blur-sm sm:hidden"
+          onClick={() => setMenuOpen(false)}
+        />
+      )}
     </motion.div>
   );
 };

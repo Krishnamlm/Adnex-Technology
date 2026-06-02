@@ -38,26 +38,7 @@ const Footer = ({ theme }) => {
 
             {/* ⚙️ Footer Links */}
             <ul className="flex flex-wrap gap-6">
-              <li>
-                <a className="hover:text-primary" href="#hero">
-                  Home
-                </a>
-              </li>
-              <li>
-                <a className="hover:text-primary" href="#services">
-                  Services
-                </a>
-              </li>
-              <li>
-                <a className="hover:text-primary" href="#our-work">
-                  Our work
-                </a>
-              </li>
-              <li>
-                <a className="hover:text-primary" href="#contact-us">
-                  Contact Us
-                </a>
-              </li>
+             
 
               {/* 🧾 Legal / Policy Links */}
               <li>
@@ -123,7 +104,7 @@ const Footer = ({ theme }) => {
           viewport={{ once: true }}
           className="pb-6 text-sm text-gray-500 flex justify-center sm:justify-between gap-4 flex-wrap"
         >
-          <p>Copyright 2025 © Adnex - All Right Reserved.</p>
+          <p>Copyright 2026 © Adnex - All Right Reserved.</p>
 
           <div className="flex items-center justify-between gap-4">
             <a

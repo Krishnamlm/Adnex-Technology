@@ -4,6 +4,16 @@ import assets from "../assets/assets";
 import toast from "react-hot-toast";
 import { motion } from "framer-motion";
 
+const SERVICES = [
+  "Web Development",
+  "App Development",
+  "SEO Optimization",
+  "UI/UX Design",
+  "Digital Marketing",
+  "Branding",
+  "Other",
+];
+
 const ContactUs = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -13,114 +23,130 @@ const ContactUs = () => {
 
     const formData = new FormData(event.target);
 
-    // CRITICAL: Ensure this key is active in your Web3Forms Dashboard
     formData.append("access_key", "6eca66aa-0d23-4277-b41f-093bb723791b");
     formData.append("from_name", "Adnex Technologies Website");
-    formData.append("subject", "New Lead from Adnex Portfolio");
+    formData.append("subject", "New Inquiry");
 
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: {
-          "Accept": "application/json",
-        },
+        headers: { Accept: "application/json" },
         body: formData,
       });
 
       const data = await response.json();
 
       if (data.success) {
-        toast.success("Message sent! We'll get back to you soon.");
+        toast.success("Message sent successfully!");
         event.target.reset();
       } else {
-        // This captures errors from the API (like invalid key)
-        console.log("Error response:", data);
-        toast.error(data.message || "Submission failed. Please check your API key.");
+        toast.error(data.message || "Submission failed.");
       }
     } catch (error) {
-      // This captures browser/network level errors
-      console.error("Fetch error:", error);
-      toast.error("Network error. Please check your internet or disable Ad-blockers.");
+      toast.error("Network error. Try again.");
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  return (
-    <motion.section
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-      id="contact-us"
-      className="flex flex-col items-center gap-7 px-4 sm:px-12 lg:px-24 xl:px-40 py-8 text-gray-700 dark:text-white"
-    >
-      <Title
-        title="Reach out to us"
-        desc="Ready to grow your brand? Let’s connect and build something exceptional together."
-      />
+ return (
+  <section id="contact-us" className="relative py-16 px-4 sm:px-10 lg:px-20 bg-white dark:bg-black overflow-hidden">
 
+    {/* glow */}
+    <div className="absolute top-[-120px] left-1/2 -translate-x-1/2 w-[350px] h-[350px] bg-purple-400/20 blur-[120px] rounded-full" />
+
+    <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+      {/* LEFT SIDE - CONTENT */}
+      <div className="text-center lg:text-left">
+        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">
+          Get in Touch
+        </h2>
+
+        <p className="mt-3 text-gray-500 dark:text-gray-400 text-sm sm:text-base">
+          Tell us your idea — we’ll handle the rest and turn it into a high-performing digital product.
+        </p>
+
+        {/* extra highlight points (optional but premium feel) */}
+        <div className="mt-6 space-y-2 text-sm text-gray-600 dark:text-gray-400">
+          <p>✔ Fast response within 24 hours</p>
+          <p>✔ Custom strategy for your business</p>
+          <p>✔ Free consultation for new clients</p>
+        </div>
+      </div>
+
+      {/* RIGHT SIDE - FORM */}
       <motion.form
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
         onSubmit={onSubmit}
-        className="grid sm:grid-cols-2 gap-5 max-w-2xl w-full"
+        initial={{ opacity: 0, x: 30 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.5 }}
+        className="space-y-4 bg-white/70 dark:bg-white/5 backdrop-blur-xl
+        border border-gray-200 dark:border-white/10
+        rounded-2xl p-6 shadow-lg"
       >
-        {/* Anti-Spam Honeypot Field (Invisible to users) */}
-        <input type="checkbox" name="botcheck" className="hidden" style={{ display: "none" }} />
 
-        <div className="flex flex-col gap-2">
-          <label className="text-sm font-medium">Your Name</label>
-          <div className="flex items-center pl-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-slate-800 focus-within:ring-2 focus-within:ring-primary/50 transition-all">
-            <img src={assets.person_icon} alt="" className="w-4 h-4" />
-            <input
-              type="text"
-              name="name"
-              placeholder="Name"
-              className="w-full p-3 text-sm bg-transparent outline-none dark:text-white"
-              required
-            />
-          </div>
-        </div>
+        <input
+          name="name"
+          required
+          placeholder="Your name"
+          className="w-full p-3 text-sm rounded-lg bg-gray-50 dark:bg-gray-900
+          border border-gray-200 dark:border-gray-700
+          outline-none focus:ring-2 focus:ring-purple-500/40"
+        />
 
-        <div className="flex flex-col gap-2">
-          <label className="text-sm font-medium">Email Address</label>
-          <div className="flex items-center pl-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-slate-800 focus-within:ring-2 focus-within:ring-primary/50 transition-all">
-            <img src={assets.email_icon} alt="" className="w-4 h-4" />
-            <input
-              type="email" 
-              name="email"
-              placeholder="Email"
-              className="w-full p-3 text-sm bg-transparent outline-none dark:text-white"
-              required
-            />
-          </div>
-        </div>
+        <input
+          type="email"
+          name="email"
+          required
+          placeholder="Email address"
+          className="w-full p-3 text-sm rounded-lg bg-gray-50 dark:bg-gray-900
+          border border-gray-200 dark:border-gray-700
+          outline-none focus:ring-2 focus:ring-blue-500/40"
+        />
 
-        <div className="sm:col-span-2 flex flex-col gap-2">
-          <label className="text-sm font-medium">Your Message</label>
-          <textarea
-            rows={5}
-            name="message"
-            placeholder="Tell us about your project..."
-            className="w-full p-3 text-sm outline-none rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-slate-800 focus-within:ring-2 focus-within:ring-primary/50 transition-all dark:text-white"
-            required
-          />
-        </div>
+        <select
+          name="service"
+          required
+          className="w-full p-3 text-sm rounded-lg bg-gray-50 dark:bg-gray-900
+          border border-gray-200 dark:border-gray-700
+          outline-none focus:ring-2 focus:ring-purple-500/40"
+        >
+          <option value="">Select service</option>
+          {SERVICES.map((s, i) => (
+            <option key={i} value={s}>
+              {s}
+            </option>
+          ))}
+        </select>
+
+        <textarea
+          name="message"
+          rows={4}
+          required
+          placeholder="Your message..."
+          className="w-full p-3 text-sm rounded-lg bg-gray-50 dark:bg-gray-900
+          border border-gray-200 dark:border-gray-700
+          outline-none focus:ring-2 focus:ring-blue-500/40 resize-none"
+        />
+
+        <input type="checkbox" name="botcheck" className="hidden" />
 
         <button
           type="submit"
           disabled={isSubmitting}
-          className={`w-full sm:w-max flex items-center justify-center gap-2 bg-primary text-white text-sm px-12 py-3.5 rounded-full transition-all font-semibold ${
-            isSubmitting ? "opacity-50 cursor-wait" : "hover:shadow-lg active:scale-95"
-          }`}
+          className="w-full flex items-center justify-center gap-2
+          py-3 rounded-lg text-sm font-semibold text-white
+          bg-gradient-to-r from-purple-600 to-blue-600
+          hover:scale-[1.02] active:scale-95 transition-all"
         >
-          {isSubmitting ? "Sending Request..." : "Submit Form"}
-          {!isSubmitting && <img src={assets.arrow_icon} alt="" className="w-4" />}
+          {isSubmitting ? "Sending..." : "Send Message"}
         </button>
       </motion.form>
-    </motion.section>
-  );
+
+    </div>
+  </section>
+);
 };
 
 export default ContactUs;
