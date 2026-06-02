@@ -1,4 +1,5 @@
 import React from 'react'
+import heroImg from '/src/assets/hero_main.png'
 import assets from '../assets/assets'
 import { motion } from "framer-motion"
 
